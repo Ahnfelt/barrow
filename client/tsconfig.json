@@ -1,0 +1,14 @@
+{
+    "compileOnSave": true,
+    "compilerOptions": {
+        "module": "commonjs",
+        "noImplicitAny": true,
+        "noImplicitReturns": true,
+        "noFallthroughCasesInSwitch": true,
+        "removeComments": true,
+        "preserveConstEnums": true,
+        "outDir": "../target/client",
+        "sourceMap": true,
+        "watch": true
+    }
+}
