@@ -6,6 +6,7 @@ import React = require('react');
 import ReactDOM = require('react-dom');
 
 class CityRow extends React.Component<{UTCOffset: string}, {hours: string, minutes: string, seconds: string}> {
+    private interval : number
     setTime() {
   
   	    var currentdate = new Date();
@@ -27,20 +28,24 @@ class CityRow extends React.Component<{UTCOffset: string}, {hours: string, minut
         if(minutesText.length == 1) { minutesText = "0" + minutesText; }
 
         var seconds = currentdate.getUTCSeconds();
-        console.log(hoursText, minutesText, "" + seconds)
+
+        var secondsText = seconds + "";
+        if(secondsText.length == 1) { secondsText = "0" + secondsText; }
+
         this.setState({
       	    hours: hoursText,
             minutes: minutesText,
-            seconds: "" + seconds
+            seconds: secondsText
         });
     }
     componentWillMount() {
   	    this.setTime();
     }
     componentDidMount() {
-  	    window.setInterval(function () {
-            this.setTime();
-        }.bind(this), 1000);
+  	    this.interval = window.setInterval(() => this.setTime(), 1000);
+    }
+    componentWillUnmount() {
+        window.clearInterval(this.interval)
     }
     render() {
         return(
