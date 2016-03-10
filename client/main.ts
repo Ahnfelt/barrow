@@ -1,21 +1,23 @@
-/// <reference path="../DefinitelyTyped/react/react.d.ts" />
-/// <reference path="../DefinitelyTyped/react/react-dom.d.ts" />
+/// <reference path="../immutable-js/type-definitions/Immutable.d.ts" />
 
-import React = require('react');
-import ReactDOM = require('react-dom');
+import I = require('immutable');
 
-class Input {
-    
-}
+class NumberType {}
+class VectorType {}
+type Type = NumberType | VectorType
 
-class Output {
-    
+class Slot {
+    constructor(public name : string, public valueType : Type) {}
 }
 
 class BoxType {
-    constructor(public name : string, public inputs : Array<Input>, public outputs : Array<Output>) {}
+    constructor(public name : string, public inputs : Array<Slot>, public outputs : Array<Slot>) {}
+}
+
+class BoxId {
+    constructor(public id : string) {}
 }
 
 class BoxInstance {
-    constructor(public boxType : BoxType, public x : number, public y : number) {}
+    constructor(public id : BoxId, public boxType : BoxType, public x : number, public y : number, public ins : I.Map<string, BoxId>, public outs : I.Map<string, BoxId>) {}
 }
