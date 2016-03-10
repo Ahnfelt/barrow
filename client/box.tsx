@@ -5,12 +5,12 @@
 import React = require('react');
 import ReactDOM = require('react-dom');
 
-class CityRow extends React.Component<{UTCOffset: string}, {hours: string, minutes: string, seconds: string}> {
+class CityRow extends React.Component<{UTCOffset: number}, {hours: string, minutes: string, seconds: string}> {
     private interval : number
     setTime() {
   
   	    var currentdate = new Date();
-  	    var hours = currentdate.getUTCHours() + parseInt(this.props.UTCOffset);    
+  	    var hours = currentdate.getUTCHours() + this.props.UTCOffset;    
 
         // correct for number over 24, and negatives
         if(hours >= 24) { hours -= 24; }
@@ -57,6 +57,6 @@ class CityRow extends React.Component<{UTCOffset: string}, {hours: string, minut
 };
 
 ReactDOM.render(
-  <CityRow UTCOffset="1" />,
+  <CityRow UTCOffset={1} />,
   document.getElementById('example')
 );
