@@ -1,7 +1,7 @@
 {
     "compileOnSave": true,
     "compilerOptions": {
-        "module": "commonjs",
+        "module": "amd",
         "noImplicitAny": true,
         "noImplicitReturns": true,
         "noFallthroughCasesInSwitch": true,
@@ -9,6 +9,7 @@
         "preserveConstEnums": true,
         "outDir": "../target/client",
         "sourceMap": true,
+        "jsx": "react",
         "watch": true
     }
 }
